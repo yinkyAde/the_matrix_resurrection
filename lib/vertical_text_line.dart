@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:the_matrix_resurrection/responsive.dart';
+
 class VerticalTextLine extends StatefulWidget {
   const VerticalTextLine({
     required this.onFinished,
-    this.speed = 12.0,
+    this.speed = 10.0,
     this.maxLength = 10,
     Key? key
   }) : super(key: key);
@@ -80,7 +82,7 @@ class _VerticalTextLineState extends State<VerticalTextLine> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
-        children: _getCharacters(),
+        children: _getCharacters(context),
       )
     );
   }
@@ -91,12 +93,12 @@ class _VerticalTextLineState extends State<VerticalTextLine> {
     super.dispose();
   }
 
-  List<Widget> _getCharacters() {
+  List<Widget> _getCharacters(BuildContext context) {
     List<Widget> textWidgets = [];
 
     for (var character in _characters) {
       textWidgets.add(
-        Text(character, style: const TextStyle(fontFamily: "Monospace", fontSize: 14))
+        Text(character, style:  TextStyle(fontFamily: "Monospace", fontSize: isMobile(context) ? 16 : isTab(context) ? 18 : 22))
       );
     }
 
